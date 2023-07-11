@@ -1,2 +1,5 @@
-# fct_qt_table_list
-Projeto para FCT - Apresentar inormações da Base de Dados em C++ com SQLite numa QTableView e duas QListViews
+## APRESENTAR INFORMAÇÕES DA BASE DE DADOS (SQLITE) EM C++ 
+## UTILIZANDO QTFRAMEWORK (QTABLEVIEW E QLISTVIEW)
+
+### Desenvolvido na SDILAB - Research & Software Development (Balanças Marques - Grupo José Pimenta Marques)
+#### Projeto para FCT - IEFP
