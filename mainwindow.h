@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QSql>
 #include <QtSql>
 #include <QDebug>
 #include <QFileInfo>
@@ -18,30 +19,37 @@ class MainWindow : public QMainWindow
 public:
     QSqlDatabase baseDados;
 
+    // Função para fechar a conexão com a base de dados
     void fecharConexao()
     {
         baseDados.close();
         baseDados.removeDatabase(QSqlDatabase::defaultConnection);
     }
 
+    // Função para abrir a conexão com a base de dados
     bool abrirConexao()
     {
         QMessageBox mensagem;
 
+        // Configura o tipo de base de dados para SQLite
         QSqlDatabase baseDados = QSqlDatabase::addDatabase("QSQLITE");
-        baseDados.setDatabaseName("/home/administrator/Formacao/Projeto/qtBD/projeto_qt.db");
 
+        // Define o caminho do ficheiro da base de dados
+        baseDados.setDatabaseName("/home/administrator/Formacao/Projeto/qtBD/projeto_formacao.db");
+
+        // Exibe os drivers disponíveis para a base de dados
+        qDebug() << QSqlDatabase::drivers();
+
+        // Tenta abrir a conexão com a base de dados
         if (!baseDados.open())
         {
             mensagem.setText("Falha ao conectar com a BD!");
-            mensagem.setDefaultButton(QMessageBox::Close);
             mensagem.exec();
             return false;
         }
         else
         {
             mensagem.setText("Conectando...");
-            mensagem.setDefaultButton(QMessageBox::Close);
             mensagem.exec();
             return true;
         }
@@ -52,10 +60,13 @@ public:
     ~MainWindow();
 
 private slots:
+    // Slot para consultar dados na base de dados
     void on_btnConsultarBD_clicked();
 
+    // Slot para consultar dados na base de dados por nome
     void on_btnConsultarNome_clicked();
 
+    // Slot para consultar dados na base de dados por sobrenome/apelido
     void on_btnConsultarSobrenome_clicked();
 
 private:
