@@ -17,6 +17,7 @@
 - C
 - C++
 - CMake
+- QT Creator
 - QT Framework
 - SQLite (QSQLite)
 
